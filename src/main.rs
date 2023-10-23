@@ -1,19 +1,25 @@
 use std::net::{IpAddr, Ipv4Addr};
 use std::str::FromStr;
+
+struct SockAddr {
+	sa_family: u16,
+	sa_data: [i8; 14],
+}
 extern "system" {
 	// i8 es la c_char = 0-255
 	// SOCKADDR = {
 	//     sa_family: u16
 	//     sa_data: [i8; 14] -- IP: 123.567.9ab.cde -> 14
 	// }
-	fn getnameinfo ( psockaddr : *const SOCKADDR ,
+	fn getnameinfo ( psockaddr : *const SockAddr ,
 					 sockaddrlength : i32 ,
 					 pnodebuffer : i8 ,
 					 nodebuffersize : u32 ,
 					 pservicebuffer : i8 ,
 					 servicebuffersize : u32 ,
-					 flags : i32 ) -> i32 )
+					 flags : i32 ) -> i32;
 }
+
 fn reverse_dns_lookup(ip_addr: &str) -> Result<String,String> {
 	let ip: IpAddr = match FromStr::from_str(ip_addr) {
 		Ok(r) => r,
@@ -45,7 +51,8 @@ fn reverse_dns_lookup(ip_addr: &str) -> Result<String,String> {
 }
 
 fn main() {
-	let arp_output = std::process::Command::new("arp")
+	getnameinfo(SockAddr::new(),0,0,0,0,0,0);
+	/*let arp_output = std::process::Command::new("arp")
 		.arg("-a")
 		.output()
 		.expect("Error al ejecutar el comando arp");
@@ -64,4 +71,5 @@ fn main() {
 			}
 		}
 	}
+	*/
 }
