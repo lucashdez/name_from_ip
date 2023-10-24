@@ -51,7 +51,8 @@ fn reverse_dns_lookup(ip_addr: &str) -> Result<String,String> {
 }
 
 fn main() {
-	getnameinfo(SockAddr::new(),0,0,0,0,0,0);
+	let new_addr = "192.168.1.53";
+	new_addr.as
 	/*let arp_output = std::process::Command::new("arp")
 		.arg("-a")
 		.output()
