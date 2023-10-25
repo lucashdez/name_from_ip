@@ -25,6 +25,7 @@ name = "hostnameslookup"
 version = "0.1.0"
 dependencies = [
  "dns-lookup",
+ "windows-sys",
 ]
 
 [[package]]

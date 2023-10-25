@@ -1,0 +1,8 @@
+#+TITLE: name_from_ip
+* Why?
+
+*name_from_ip* is an utility made for recovering the hostnames of the IPs registered by the arp -a command in Windows. After thinking a while, I've decided to make a 0 dependency name_from_ip with several capabilities for Unix and Windows.
+
+**** TODO Modelo utilizando windows_sys
+**** TODO UNIX
+

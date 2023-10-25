@@ -1,10 +1,8 @@
 use std::net::{IpAddr, Ipv4Addr};
 use std::str::FromStr;
 
-struct SockAddr {
-	sa_family: u16,
-	sa_data: [i8; 14],
-}
+
+/*
 extern "system" {
 	// i8 es la c_char = 0-255
 	// SOCKADDR = {
@@ -19,6 +17,7 @@ extern "system" {
 					 servicebuffersize : u32 ,
 					 flags : i32 ) -> i32;
 }
+*/
 
 fn reverse_dns_lookup(ip_addr: &str) -> Result<String,String> {
 	let ip: IpAddr = match FromStr::from_str(ip_addr) {
@@ -51,8 +50,9 @@ fn reverse_dns_lookup(ip_addr: &str) -> Result<String,String> {
 }
 
 fn main() {
-	let new_addr = "192.168.1.53";
-	new_addr.as
+	let new_addr = "192.168.1.53".to_string();
+	let sock_:SockAddr = SockAddr::new(new_addr);
+	println!("{:?}", sock_);
 	/*let arp_output = std::process::Command::new("arp")
 		.arg("-a")
 		.output()
